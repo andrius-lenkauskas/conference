@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hello world</title>
+	<link href="/resources/css/bootstrap-theme-3.0.0.min.css" rel="stylesheet" type="text/css" />
+	<link href="/resources/css/bootstrap-3.0.0.min.css" rel="stylesheet" type="text/css" />
+	<script src="/resources/js/bootstrap-3.0.0.min.js" type="text/javascript"></script>
+	<script src="/resources/js/jquery-2.0.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="tabbable" style="margin-bottom: 18px;">
+	<ul class="nav nav-tabs">
+	#set($first = true)
+ 	#foreach($key in $tabMap.keySet())
+		#if($first)
+			<li class="active"><a href="#$tabMap.get($key)">$key</a></li>
+			#set($first = false)
+		#else
+			<li class=""><a href="#$tabMap.get($key)">$key</a></li>
+		#end
+	#end
+	</ul>
+	<div id="content" class="tab-content" style="padding-bottom: 9px; border-bottom: 1px solid #ddd;">
+		#set($first = true)
+		#foreach($key in $tabMap.keySet())
+            #if($first)
+				<div class="tab-pane active" id="$tabMap.get($key)">
+              		<p>Placeholder</p>
+            	</div>
+				#set($first = false)
+			#else
+				<div class="tab-pane" id="$tabMap.get($key)">
+              		<p>Placeholder</p>
+            	</div>
+			#end
+		#end
+	</div>
+</div>
+#foreach($key in $tabMap.keySet())
+	#set($url = $tabMap.get($key) + ".html")
+	<script type="text/javascript">$("#$tabMap.get($key)").load(location.href + "/$tabMap.get($key)" + ".html");</script>
+#end
+</body>
+</html>

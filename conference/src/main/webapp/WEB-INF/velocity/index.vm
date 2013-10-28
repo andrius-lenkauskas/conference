@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Conference</title>
+        #parse("blocks/head.vm")
+    </head>
+    <body>
+    	 #if ($isLogged)
+    	<div class="header"><a href="#springUrl('/logout.html')">Logout</a>
+        </div>
+    	 #else
+        <div class="header">Hi! <a href="#loginModal">Sign in</a>
+            or <a href="#registerModal">register</a>
+        </div>
+        #end
+        <div id="wrapper">
+            <div class="menu">
+                <a href="#springUrl('')">Main</a>
+                #if ($isLogged)
+                	<a href="#springUrl('/participation.html')">Participation</a>
+            	#end
+            </div>
+            <div class="content">
+            	<form method="post" action="" id="filters">
+                <div class="formGroup">
+                    <label for="filterStart">Start Date</label>
+                    <input type="text" name="start" id="filterStart" class="datePicker">
+                </div>
+                <div class="formGroup">
+                    <label for="filterEnd">End Date</label>
+                    <input type="text" name="end" id="filterEnd" class="datePicker">
+                </div>
+                <div class="formGroup">
+                	<label for="categories">Categories</label>
+                    <select id="categories">
+                    	<option value="notSelected">Not selected</option>
+                    </select>
+                </div>
+        		</form>
+        		<table>
+					<tr>
+					<th>Conference title</th>
+					<th>Participant</th>
+					<th>Speaker</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Description</th>
+					</tr>
+					<tr>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					</tr>
+				</table>
+            </div>
+        </div>
+        <div id="loginModal" class="modalDialog">
+        	<div>
+			<a onclick="resetModalWindow(this, 'loginWarning')" href="javascript:void(0)" title="Close" class="closeModal">X</a>
+			<form id="loginForm">
+            	<fieldset>
+                <legend>Login form</legend>
+                	<p>
+                    <label>Email:</label>
+                    <input type="text" name="j_username">
+                    </p>
+                    <p>
+                    <label>Password:</label>
+                    <input type="password" name="j_password">
+                    </p>
+                	<p id="loginWarning" class="error"></p>
+                	<div class="centerElem">
+                	<input id="submitLogin" type="submit" value="Login" onclick="clickLoginSubmit('#springUrl('')');return false;">
+                	</div>
+            	</fieldset>
+        	</form>
+        	</div>
+		</div>
+		<div id="registerModal" class="modalDialog">
+			<div>
+			<a onclick="resetModalWindow(this, 'registerWarning')" href="javascript:void(0)" title="Close" class="closeModal">X</a>
+			<form id="registerForm">
+            	<fieldset>
+                <legend>Registration form</legend>
+                <p>
+                    <label>Name:</label>
+                    <input type="text" name="name">
+                </p>
+                <p>
+                    <label>Surname:</label>
+                    <input type="text" name="surname">
+                </p>
+                <p>
+                    <label>Email:</label>
+                    <input type="text" name="email">
+                </p>
+                <p>
+                    <label>Country:</label>
+                    <input type="text" name="country">
+                </p>
+                <p>
+                    <label>Town:</label>
+                    <input type="text" name="town">
+                </p>
+                <p>
+                    <label>Password:</label>
+                    <input type="password" name="password">
+                </p>
+                <p id="registerWarning" class="error"></p>
+                <div class="centerElem">
+                <input id="submitRegister" type="submit" value="Register" onclick="clickRegisterSubmit('#springUrl('')');return false;">
+                </div>
+            	</fieldset>
+        	</form>
+			</div>
+		</div>
+    </body>
+</html>

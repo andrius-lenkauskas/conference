@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import lt.nfq.conference.domain.Conference;
+import lt.nfq.conference.service.dao.ConferenceMapper;
+import lt.nfq.conference.domain.User;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
@@ -32,4 +34,17 @@ public interface ConferenceMapper {
     @SelectKey(statement="CALL IDENTITY()", keyProperty="id", before=false, resultType=int.class)
     public int insertConference(Conference conference);
     
+    /**
+	 * Returns User object which is used by spring security for users authentication
+	 * 
+	 * @param name users name
+	 * @return User object
+	 */
+    @Select("SELECT * FROM users WHERE email=#{user}")
+    public User loadUserByName(@Param("user") String username);
+    
+    @Options(flushCache=true)
+    @Insert("INSERT INTO users (name, surname, email, country, town, password, role) VALUES (#{name}, #{surname}, #{email}, #{country}, #{town}, #{password}, #{role})")
+    @SelectKey(statement="CALL IDENTITY()", keyProperty="id", before=false, resultType=int.class)
+    public int addUser(User user) throws Exception;
 }

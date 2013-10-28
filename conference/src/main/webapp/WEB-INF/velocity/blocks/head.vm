@@ -1,5 +1,9 @@
 <meta charset="UTF-8">
-        <link rel="stylesheet" href="/resources/css/main.css" type="text/css">
-        <link rel="shortcut icon" href="/resources/images/icon_32.png" sizes="32x32">
-        <link rel="shortcut icon" href="/resources/images/icon_48.png" sizes="48x48">
-        <link rel="shortcut icon" href="/resources/images/icon_128.png" sizes="128x128">
+<link rel="shortcut icon" href=#springUrl("/resources/images/icon_32.png") sizes="32x32">
+<link rel="shortcut icon" href=#springUrl("/resources/images/icon_48.png") sizes="48x48">
+<link rel="shortcut icon" href=#springUrl("/resources/images/icon_128.png") sizes="128x128">
+<link rel="stylesheet" href=#springUrl("/resources/css/conference.css")>
+<link rel="stylesheet" href=#springUrl("/resources/css/jquery-ui-1.10.3.custom.min.css")>
+<script src=#springUrl("/resources/js/conference.js")></script>
+<script src=#springUrl("/resources/js/jquery-2.0.3.min.js")></script>
+<script src=#springUrl("/resources/js/jquery-ui-1.10.3.custom.min.js")></script>

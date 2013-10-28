@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Conference</title>
+        #parse("blocks/head.vm")
+    </head>
+    <body>
+    	 #if ($isLogged)
+    	<div class="header"><a href="#springUrl('/logout.html')">Logout</a>
+        </div>
+    	 #else
+        <div class="header">Hi! <a href="#loginModal">Sign in</a>
+            or <a href="#registerModal">register</a>
+        </div>
+        #end
+        <div id="wrapper">
+            <div class="menu">
+                <a href="#springUrl('')">Main</a>
+                #if ($isLogged)
+                	<a href="#springUrl('/participation.html')">Participation</a>
+            	#end
+            </div>
+            <div class="content">
+            	<form action="#addConferenceModal" method="get">
+  					<input type="submit" value="Create new conference" />
+				</form>
+				<form action="#conferenSummary" method="get">
+  					<input type="submit" value="Test conference summary" />
+				</form>
+            	<p>Speaker on</p>
+        		<table>
+					<tr>
+					<th>Conference title</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Description</th>
+					</tr>
+					<tr>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					<td>Edit</td>
+					</tr>
+				</table>
+				<p>Participant on</p>
+        		<table>
+					<tr>
+					<th>Conference title</th>
+					<th>Speaker</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Description</th>
+					</tr>
+					<tr>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+					</tr>
+				</table>
+            </div>
+        </div>
+		<div id="addConferenceModal" class="modalDialogAddConference">
+			<div>
+			<a onclick="resetModalWindow(this,'addConferenceWarning')" href="javascript:void(0)" title="Close" class="closeModal">X</a>
+			<form id="addConferenceForm">
+                <div class="formGroupAddConference">
+                    <label>Conference title</label>
+                    <input type="text" name="conferenceTitle" class="maxWidth">
+                </div>
+                <div class="formGroupAddConference clear">
+                    <label for="filterStart">Start Date</label>
+                    <input type="text" name="start" id="filterStart" class="datePicker">
+                </div>
+                <div class="formGroupAddConference">
+                    <label for="filterEnd">End Date</label>
+                    <input type="text" name="end" id="filterEnd" class="datePicker">
+                </div>
+                <div class="formGroupAddConference">
+                	<label for="categories">Categories</label>
+                    <select id="categories" name="categories">
+                    	<option value="notSelected">Not selected</option>
+                    </select>
+                </div>
+                <div class="formGroupAddConference">
+                    <label>Location</label>
+                    <input type="text" name="location" class="maxWidth">
+                </div>
+                <div class="formGroupAddConference clear">
+                    <label>Description</label>
+                    <textarea name="description" class="maxWidth"></textarea> 
+                </div>
+                <p id="addConferenceWarning" class="error"></p>
+                <div class="clear">
+                <input id="submitRegister" type="submit" value="Add new conference" onclick="clickRegisterSubmit('#springUrl('')');return false;">
+                </div>
+        	</form>
+			</div>
+		</div>
+		<div id="conferenSummary" class="modalDialog">
+        	<div>
+			<a onclick="resetModalWindow(this, 'conferenSummaryWarning')" href="javascript:void(0)" title="Close" class="closeModal">X</a>
+                	<p>
+                    <label>Conference title:</label>
+                    <p class="displayInLIne">Lietuvos vyskupų konferencija</p>
+                    </p>
+                    <p>
+                    <label>Speaker:</label>
+                    <p class="displayInLIne">Sigitas Tamkevičius</p>
+                    </p>
+                    <p>
+                    <label>Start date:</label>
+                    <p class="displayInLIne">2013-10-22</p>
+                    </p>
+                    <p>
+                    <label>End date:</label>
+                    <p class="displayInLIne">2013-10-29</p>
+                    </p>
+                    <p>
+                    <label>Category:</label>
+                    <p class="displayInLIne">Religija</p>
+                    </p>
+                    <p>
+                    <label>Location:</label>
+                    <p class="displayInLIne">Kaunas, Vytauto bažnyčia</p>
+                    </p>
+                    <p>
+                    <label>Description:</label>
+                    <textarea wrap="hard" readonly>Letuvos katalikų, Lietuvos liuteronų ir Lietuvos tačiatikių bažnyčių Atstovų pareiškimas, dėl žmogaus gyvybės apsaugos</textarea>
+                    </p>
+                	<p id="conferenSummaryWarning" class="error"></p>
+                	</div>
+        	</div>
+		</div>
+    </body>
+</html>
