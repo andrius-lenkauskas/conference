@@ -68,12 +68,6 @@ public class ApiController {
 		}
 	}
 
-	@RequestMapping(value = { "/countrieslist" }, method = RequestMethod.GET)
-	@ResponseBody
-	public List<Country> countries() {
-		return conferenceService.getContries();
-	}
-	
 	@RequestMapping(value = { "/citieslist" }, method = RequestMethod.GET)
 	@ResponseBody
 	public List<City> cities(@RequestParam(value = "countrycode", required = true) String countrycode) {
