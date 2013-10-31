@@ -3,8 +3,9 @@ package lt.nfq.conference.service.dao;
 import java.util.Date;
 import java.util.List;
 
+import lt.nfq.conference.domain.City;
 import lt.nfq.conference.domain.Conference;
-import lt.nfq.conference.service.dao.ConferenceMapper;
+import lt.nfq.conference.domain.Country;
 import lt.nfq.conference.domain.User;
 
 import org.apache.ibatis.annotations.Insert;
@@ -47,4 +48,10 @@ public interface ConferenceMapper {
     @Insert("INSERT INTO users (name, surname, email, country, town, password, role) VALUES (#{name}, #{surname}, #{email}, #{country}, #{town}, #{password}, #{role})")
     @SelectKey(statement="CALL IDENTITY()", keyProperty="id", before=false, resultType=int.class)
     public int addUser(User user) throws Exception;
+    
+    @Select("SELECT * FROM countries")
+    public List<Country> getContries();
+    
+    @Select("SELECT * FROM cities WHERE countrycode=#{countrycode}")
+    public List<City> getCities(@Param("countrycode") String countrycode);
 }

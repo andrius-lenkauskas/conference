@@ -8,7 +8,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lt.nfq.conference.domain.City;
 import lt.nfq.conference.domain.Conference;
+import lt.nfq.conference.domain.Country;
 import lt.nfq.conference.service.dao.ConferenceMapper;
 import lt.nfq.conference.domain.User;
 
@@ -17,6 +19,14 @@ public class ConferenceService {
 	
     @Autowired
     private ConferenceMapper conferenceMapper;
+    
+    public List<City> getCities(String countrycode) {
+        return conferenceMapper.getCities(countrycode);
+    }
+    
+    public List<Country> getContries() {
+        return conferenceMapper.getContries();
+    }
 
     public int addRegularConferenceUser(User user){
     	User userClone = new User(user);

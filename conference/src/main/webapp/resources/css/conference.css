@@ -99,6 +99,10 @@ a:hover {
 	background: -o-linear-gradient(#fff, #999);*/
 }
 
+.modalDialog select {
+	width: 148px;
+}
+
 .modalDialog label {
 	float: left;
 	width: 30%;

@@ -1,8 +1,12 @@
 package lt.nfq.conference.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import lt.nfq.conference.domain.City;
+import lt.nfq.conference.domain.Country;
 import lt.nfq.conference.domain.User;
 import lt.nfq.conference.service.ConferenceService;
 
@@ -62,5 +66,17 @@ public class ApiController {
 		} catch (AuthenticationException e) {
 			return false;
 		}
+	}
+
+	@RequestMapping(value = { "/countrieslist" }, method = RequestMethod.GET)
+	@ResponseBody
+	public List<Country> countries() {
+		return conferenceService.getContries();
+	}
+	
+	@RequestMapping(value = { "/citieslist" }, method = RequestMethod.GET)
+	@ResponseBody
+	public List<City> cities(@RequestParam(value = "countrycode", required = true) String countrycode) {
+		return conferenceService.getCities(countrycode);
 	}
 }

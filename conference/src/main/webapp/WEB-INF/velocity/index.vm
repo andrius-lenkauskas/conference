@@ -4,7 +4,7 @@
         <title>Conference</title>
         #parse("blocks/head.vm")
     </head>
-    <body>
+    <body onload="getCitiesList('#springUrl('')')">
     	 #if ($isLogged)
     	<div class="header"><a href="#springUrl('/logout.html')">Logout</a>
         </div>
@@ -99,11 +99,17 @@
                 </p>
                 <p>
                     <label>Country:</label>
-                    <input type="text" name="country">
+                    <select name="country" onchange="getCitiesList('#springUrl('')')">
+                    #foreach($country in $countriesList)
+                    	<option value="$country.countrycode">$country.countryname</option>
+                    #end
+                    </select>
                 </p>
                 <p>
                     <label>Town:</label>
-                    <input type="text" name="town">
+                    <select name="town">
+                    	<option value="Not selected">Not selected</option>
+                    </select>
                 </p>
                 <p>
                     <label>Password:</label>
