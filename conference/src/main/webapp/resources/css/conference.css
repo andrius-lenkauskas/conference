@@ -4,6 +4,7 @@ body {
 	padding-left: 50px;
 }
 
+
 .header {
 	font-size: 14px;
 }
@@ -100,7 +101,7 @@ a:hover {
 }
 
 .modalDialog select {
-	width: 148px;
+	width: 141px;
 }
 
 .modalDialog label {
@@ -108,6 +109,7 @@ a:hover {
 	width: 30%;
 	text-align: right;
 	margin-right: 0.5em;
+	/*padding-right: 10px;*/
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -116,8 +118,8 @@ a:hover {
 
 .modalDialog textarea {
 	height: 80px;
-    width: 265px;
-    resize: none;
+	width: 265px;
+	resize: none;
 }
 
 .closeModal {
@@ -146,6 +148,18 @@ a:hover {
 .error {
 	color: #ff0000;
 	text-align: center;
+	font-family: Georgia,Verdana,Arial,Helvetica,sans-serif;
+}
+
+.fielderror {
+	color: #ff0000;
+	font-family: Georgia,Verdana,Arial,Helvetica,sans-serif;
+	font-size: 12px;
+	margin-bottom: 4px;
+	display: block;
+	margin-left: 32%;
+	word-wrap: break-word;
+	width: 250px;
 }
 
 .centerElem {

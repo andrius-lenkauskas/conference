@@ -16,6 +16,11 @@ function clickLoginSubmit(cp) {
 }
 
 function clickRegisterSubmit(cp) {
+	var spans = document.getElementById('registerForm').getElementsByTagName('span');
+	for(i = 0; i < spans.length; i++){
+		if(spans[i].className =='error' || spans[i].className =='fielderror')
+			spans[i].innerHTML = '';
+	}
 	$.ajax({
 		url : cp + '/api/register',
 		data : $('#registerForm').serialize(),
@@ -24,16 +29,25 @@ function clickRegisterSubmit(cp) {
 		processData : false,
 		async : false,
 		success : function(res) {
-			if(res == "true")
+			if(res.status == "SUCCESS")
 				location.href = cp;
-			else
-				document.getElementById('registerWarning').innerHTML = 'Please correct data';
+			else if (res.status == "SERVERFAIL")
+				document.getElementById('registerWarning').innerHTML = 'Please try again';
+			else{
+				for(i = 0; i < res.result.length; i++){
+					document.getElementById(res.result[i].field + 'error').innerHTML = res.result[i].defaultMessage;
+				}
+			}
 		}
 	});
 }
 
-function resetModalWindow(e, id){
-	document.getElementById(id).innerHTML = '';
+function resetModalWindow(e, cl){
+	var spans = document.getElementById(cl).getElementsByTagName('span');
+	for(i = 0; i < spans.length; i++){
+		if(spans[i].className =='error' || spans[i].className =='fielderror')
+			spans[i].innerHTML = '';
+	}
 	if(e.className =='closeModal'){
 		location.href = new RegExp('.*#').exec(location.href) + 'close';
 	}

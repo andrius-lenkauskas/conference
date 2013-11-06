@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import lt.nfq.conference.domain.City;
 import lt.nfq.conference.domain.Conference;
 import lt.nfq.conference.domain.Country;
+import lt.nfq.conference.domain.UserRegForm;
 import lt.nfq.conference.service.dao.ConferenceMapper;
 import lt.nfq.conference.domain.User;
 
@@ -28,18 +29,23 @@ public class ConferenceService {
         return conferenceMapper.getContries();
     }
 
-    public int addRegularConferenceUser(User user){
-    	User userClone = new User(user);
-    	userClone.setPassword(returnEncryptedPassword(userClone.getPassword()));
-    	userClone.setRole("ROLE_REGULAR");
-    	int test = 0;
+    public int addRegularConferenceUser(UserRegForm userRegForm){
+    	User user = new User();
+    	user.setEmail(userRegForm.getEmail());
+    	user.setName(userRegForm.getName());
+    	user.setSurname(userRegForm.getSurname());
+    	user.setCountry(userRegForm.getCountry());
+    	user.setTown(userRegForm.getTown());
+    	user.setPassword(returnEncryptedPassword(userRegForm.getPassword()));
+    	user.setRole("ROLE_REGULAR");
+    	int res = 0;
 		try {
-			test = conferenceMapper.addUser(userClone);
+			res = conferenceMapper.addUser(user);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 		}
-    	return test;
+    	return res;
     }
     
     /**

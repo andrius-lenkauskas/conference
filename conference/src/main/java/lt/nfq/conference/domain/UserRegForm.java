@@ -1,25 +1,32 @@
 package lt.nfq.conference.domain;
 
-public class User {
-	private int id;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
+public class UserRegForm {
+
+	@Size(min = 1, max = 255)
 	private String name;
+
+	@Size(min = 1, max = 255)
 	private String surname;
+
+	@Email
+	@Size(min = 1, max = 255)
 	private String email;
+
+	@Size(min = 1, max = 100)
 	private String country;
+
+	@Size(min = 1, max = 100)
 	private String town;
+
+	@NotEmpty
 	private String password;
-	private String role;
 
-	public User() {
-
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+	public UserRegForm() {
 	}
 
 	public String getName() {
@@ -28,22 +35,6 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
 	}
 
 	public String getSurname() {
@@ -77,4 +68,13 @@ public class User {
 	public void setTown(String town) {
 		this.town = town;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 }

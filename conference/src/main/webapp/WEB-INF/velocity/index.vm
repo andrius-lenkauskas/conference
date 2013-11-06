@@ -59,7 +59,7 @@
         </div>
         <div id="loginModal" class="modalDialog">
         	<div>
-			<a onclick="resetModalWindow(this, 'loginWarning')" href="javascript:void(0)" title="Close" class="closeModal">X</a>
+			<a onclick="resetModalWindow(this, 'loginForm')" href="javascript:void(0)" title="Close" class="closeModal">X</a>
 			<form id="loginForm">
             	<fieldset>
                 <legend>Login form</legend>
@@ -71,7 +71,9 @@
                     <label>Password:</label>
                     <input type="password" name="j_password">
                     </p>
-                	<p id="loginWarning" class="error"></p>
+                	<p class="centerElem">
+                		<span id="loginWarning" class="error"></span>
+                	</p>
                 	<div class="centerElem">
                 	<input id="submitLogin" type="submit" value="Login" onclick="clickLoginSubmit('#springUrl('')');return false;">
                 	</div>
@@ -81,21 +83,30 @@
 		</div>
 		<div id="registerModal" class="modalDialog">
 			<div>
-			<a onclick="resetModalWindow(this, 'registerWarning')" href="javascript:void(0)" title="Close" class="closeModal">X</a>
+			<a onclick="resetModalWindow(this, 'registerForm')" href="javascript:void(0)" title="Close" class="closeModal">X</a>
 			<form id="registerForm">
             	<fieldset>
                 <legend>Registration form</legend>
                 <p>
                     <label>Name:</label>
-                    <input type="text" name="name">
+                    <div>
+                    	<input type="text" name="name" />
+                    	<span id="nameerror" class="fielderror"></span>
+                    </div>
                 </p>
                 <p>
                     <label>Surname:</label>
+                    <div>
                     <input type="text" name="surname">
+                    <span id="surnameerror" class="fielderror"></span>
+                    <div>
                 </p>
                 <p>
                     <label>Email:</label>
+                    <div>
                     <input type="text" name="email">
+                    <span id="emailerror" class="fielderror"></span>
+                    </div>
                 </p>
                 <p>
                     <label>Country:</label>
@@ -113,9 +124,14 @@
                 </p>
                 <p>
                     <label>Password:</label>
+                    <div>
                     <input type="password" name="password">
+                    <span id="passworderror" class="fielderror"></span>
+                    </div>
                 </p>
-                <p id="registerWarning" class="error"></p>
+                <p class="centerElem">
+                	<span id="registerWarning" class="error"></span>
+                </p>
                 <div class="centerElem">
                 <input id="submitRegister" type="submit" value="Register" onclick="clickRegisterSubmit('#springUrl('')');return false;">
                 </div>
