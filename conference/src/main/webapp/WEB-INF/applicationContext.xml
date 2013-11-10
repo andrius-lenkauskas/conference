@@ -25,9 +25,11 @@
 
     <jdbc:initialize-database data-source="dataSource" ignore-failures="ALL" enabled="${jdbc.initialize}">
         <jdbc:script location="classpath:sql/schema.sql" />
-        <jdbc:script location="classpath:sql/sample-data.sql" />
+        <jdbc:script location="classpath:sql/users-list.sql" />
         <jdbc:script location="classpath:sql/countries-list.sql" />
         <jdbc:script location="classpath:sql/cities-list.sql" />
+        <jdbc:script location="classpath:sql/categories-list.sql" />
+        <jdbc:script location="classpath:sql/conferences-list.sql" />
         <!-- -->
     </jdbc:initialize-database>
 

@@ -1,0 +1,23 @@
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (1, 5, 1, '2013-11-20 17:00:00', '2013-11-21 18:00:00', 'Новости от Путина', 'НАТО и прибалтика');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (2, 5, 1, '2013-11-20 14:00:00', '2013-11-22 19:00:00', 'Новости от Путина2', 'НАТО и прибалтика2');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (3, 5, 1, '2013-11-21 14:00:00', '2013-11-23 19:00:00', 'Новости от Путина3', 'НАТО и прибалтика3');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (4, 5, 1, '2013-11-22 14:00:00', '2013-11-24 19:00:00', 'Новости от Путина4', 'НАТО и прибалтика4');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (5, 5, 1, '2013-11-23 14:00:00', '2013-11-25 19:00:00', 'Новости от Путина5', 'НАТО и прибалтика5');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (6, 5, 1, '2013-11-24 14:00:00', '2013-11-26 19:00:00', 'Новости от Путина6', 'НАТО и прибалтика6');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (7, 5, 1, '2013-11-25 14:00:00', '2013-11-27 19:00:00', 'Новости от Путина7', 'НАТО и прибалтика7');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (8, 5, 1, '2013-11-26 14:00:00', '2013-11-28 19:00:00', 'Новости от Путина8', 'НАТО и прибалтика8');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (9, 5, 1, '2013-11-27 14:00:00', '2013-11-29 19:00:00', 'Новости от Путина9', 'НАТО и прибалтика9');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (10, 5, 1, '2013-11-28 14:00:00', '2013-11-30 19:00:00', 'Новости от Путина10', 'НАТО и прибалтика10');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (11, 5, 1, '2013-11-29 14:00:00', '2013-12-01 19:00:00', 'Новости от Путина11', 'НАТО и прибалтика11');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (12, 5, 1, '2013-11-30 14:00:00', '2013-12-02 19:00:00', 'Новости от Путина12', 'НАТО и прибалтика12');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (13, 5, 1, '2013-12-01 14:00:00', '2013-12-03 19:00:00', 'Новости от Путина13', 'НАТО и прибалтика13');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (14, 5, 1, '2013-11-02 14:00:00', '2013-12-04 19:00:00', 'Новости от Путина14', 'НАТО и прибалтика14');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (15, 5, 1, '2013-11-03 14:00:00', '2013-12-07 19:00:00', 'Новости от Путина15', 'НАТО и прибалтика15');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (16, 5, 1, '2013-11-04 14:00:00', '2013-12-12 19:00:00', 'Новости от Путина16', 'НАТО и прибалтика16');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (17, 5, 1, '2013-11-05 14:00:00', '2013-12-13 19:00:00', 'Новости от Путина17', 'НАТО и прибалтика17');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (18, 5, 1, '2013-11-06 14:00:00', '2013-12-14 19:00:00', 'Новости от Путина18', 'НАТО и прибалтика18');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (19, 5, 1, '2013-11-07 14:00:00', '2013-12-15 19:00:00', 'Новости от Путина19', 'НАТО и прибалтика19');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (20, 5, 1, '2013-11-08 14:00:00', '2013-12-19 19:00:00', 'Новости от Путина20', 'НАТО и прибалтика20');
+INSERT INTO conferences (id,creatorID,categoryID,startDate,endDate,title,description) VALUES (21, 5, 1, '2013-11-09 14:00:00', '2013-12-21 19:00:00', 'Новости от Путина21', 'НАТО и прибалтика21');
+
+COMMIT;

@@ -15,7 +15,7 @@
         #end
         <div id="wrapper">
             <div class="menu">
-                <a href="#springUrl('')">Main</a>
+                <a href="#springUrl('/')">Main</a>
                 #if ($isLogged)
                 	<a href="#springUrl('/participation.html')">Participation</a>
             	#end

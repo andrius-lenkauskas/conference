@@ -1,11 +1,5 @@
 package lt.nfq.conference.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-
-import lt.nfq.conference.domain.Country;
 import lt.nfq.conference.service.ConferenceService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 	@Autowired
-	protected ConferenceService conferenceService;
-	
-	private List<Country> countriesList;
-	
-	@PostConstruct
-    public void customInit()
-    {
-		countriesList = conferenceService.getContries();
-    }
+	private ConferenceService conferenceService;
 	
 	@RequestMapping(value = { "/index", "/", "" }, method = RequestMethod.GET)
 	public String index(ModelMap model) {
@@ -37,7 +23,8 @@ public class MainController {
 		} else {
 			model.addAttribute("isLogged", false);
 		}
-		model.addAttribute("countriesList", countriesList);
+		model.addAttribute("countriesList", conferenceService.getCountries());
+		model.addAttribute("categoriesList", conferenceService.getCategories());
 		return "index";
 	}
 

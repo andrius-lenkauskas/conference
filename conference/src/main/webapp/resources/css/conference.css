@@ -4,7 +4,6 @@ body {
 	padding-left: 50px;
 }
 
-
 .header {
 	font-size: 14px;
 }
@@ -15,6 +14,15 @@ a {
 
 a:hover {
 	text-decoration: underline;
+}
+
+#itemsCount {
+	display: inline;
+	width: 45px;
+}
+
+#itemsCountSelection {
+	float: right;
 }
 
 #wrapper {
@@ -55,6 +63,7 @@ a:hover {
 .content td,th {
 	border: thin dotted gray;
 	padding: 5px;
+	height: 15px;
 }
 
 .formGroup {
@@ -100,10 +109,6 @@ a:hover {
 	background: -o-linear-gradient(#fff, #999);*/
 }
 
-.modalDialog select {
-	width: 141px;
-}
-
 .modalDialog label {
 	float: left;
 	width: 30%;
@@ -114,6 +119,10 @@ a:hover {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	-o-text-overflow: ellipsis;
+}
+
+.modalDialog input[type="text"], input[type="password"], select {
+	width: 150px;
 }
 
 .modalDialog textarea {
@@ -148,14 +157,14 @@ a:hover {
 .error {
 	color: #ff0000;
 	text-align: center;
-	font-family: Georgia,Verdana,Arial,Helvetica,sans-serif;
+	font-family: Georgia, Verdana, Arial, Helvetica, sans-serif;
 }
 
 .fielderror {
 	color: #ff0000;
-	font-family: Georgia,Verdana,Arial,Helvetica,sans-serif;
+	font-family: Georgia, Verdana, Arial, Helvetica, sans-serif;
 	font-size: 12px;
-	margin-bottom: 4px;
+	margin-bottom: -10px;
 	display: block;
 	margin-left: 32%;
 	word-wrap: break-word;

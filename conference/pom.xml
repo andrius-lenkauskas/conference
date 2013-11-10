@@ -125,7 +125,7 @@
 						<port>8080</port>
 					</httpConnector>
 					<webApp>
-      					<contextPath>/</contextPath>
+      					<contextPath>/pyzda</contextPath>
     				</webApp>
 				</configuration>
 			</plugin>

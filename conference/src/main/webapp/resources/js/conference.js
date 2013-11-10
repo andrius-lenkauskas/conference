@@ -1,6 +1,11 @@
-function clickLoginSubmit(cp) {
+function load(cp){
+	contextPath = cp;
+	rowsPerPage = Number(document.getElementById('itemsCount').value);
+	fillConferenceTable();
+}
+function clickLoginSubmit() {
 	$.ajax({
-		url : cp + '/api/login',
+		url : contextPath + '/api/login',
 		data : $('#loginForm').serialize(),
 		type : 'post',
 		contentType : 'application/x-www-form-urlencoded',
@@ -8,21 +13,21 @@ function clickLoginSubmit(cp) {
 		async : false,
 		success : function(res) {
 			if(res == "true")
-				location.href = cp;
+				location.href = contextPath;
 			else
 				document.getElementById('loginWarning').innerHTML = 'Wrong user name or password';
 		}
 	});
 }
 
-function clickRegisterSubmit(cp) {
+function clickRegisterSubmit() {
 	var spans = document.getElementById('registerForm').getElementsByTagName('span');
 	for(i = 0; i < spans.length; i++){
 		if(spans[i].className =='error' || spans[i].className =='fielderror')
 			spans[i].innerHTML = '';
 	}
 	$.ajax({
-		url : cp + '/api/register',
+		url : contextPath + '/api/register',
 		data : $('#registerForm').serialize(),
 		type : 'post',
 		contentType : 'application/x-www-form-urlencoded',
@@ -30,7 +35,7 @@ function clickRegisterSubmit(cp) {
 		async : false,
 		success : function(res) {
 			if(res.status == "SUCCESS")
-				location.href = cp;
+				location.href = contextPath;
 			else if (res.status == "SERVERFAIL")
 				document.getElementById('registerWarning').innerHTML = 'Please try again';
 			else{
@@ -53,10 +58,10 @@ function resetModalWindow(e, cl){
 	}
 }
 
-function getCitiesList(cp){
+function getCitiesList(){
 	$('[name="town"]').prop('disabled', true);
 	$.ajax({
-		url : cp + '/api/citieslist',
+		url : contextPath + '/api/citieslist',
 		data : 'countrycode=' + $('[name="country"]').val(),
 		type : 'get',
 		contentType : 'text/xml;charset=UTF-8',
@@ -69,4 +74,15 @@ function getCitiesList(cp){
 			$('[name="town"]').prop('disabled', false);
 		}
 	});
+}
+
+function fillConferenceTable(){
+	var table = document.getElementById("conferenceList");
+	for(i = 0; i < rowsPerPage; i++){
+		var row = table.insertRow(table.rows.length);
+		for(j = 0; j < 6; j++){
+			var cell = row.insertCell(j);
+			cell.innerHTML = "";
+		}
+	}
 }

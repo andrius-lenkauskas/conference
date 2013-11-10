@@ -3,6 +3,7 @@ package lt.nfq.conference.service.dao;
 import java.util.Date;
 import java.util.List;
 
+import lt.nfq.conference.domain.Category;
 import lt.nfq.conference.domain.City;
 import lt.nfq.conference.domain.Conference;
 import lt.nfq.conference.domain.Country;
@@ -50,8 +51,17 @@ public interface ConferenceMapper {
     public int addUser(User user) throws Exception;
     
     @Select("SELECT * FROM countries")
-    public List<Country> getContries();
+    public List<Country> getCountries();
     
     @Select("SELECT * FROM cities WHERE countrycode=#{countrycode}")
     public List<City> getCities(@Param("countrycode") String countrycode);
+    
+    @Select("SELECT * FROM categories")
+    public List<Category> getAllCategories();
+    
+    @Select("SELECT * FROM categories WHERE maincategory=#{cat}")
+    public List<Category> getCategories(@Param("cat") String maincategory);
+    //-------------------------------------------------------------
+    @Select("SELECT * FROM conferences WHERE id >= #{start} and id <= #{end}")
+    public List<Conference> getConferencesByIdRange(@Param("start") int startId, @Param("end") int endId);
 }

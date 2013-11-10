@@ -1,15 +1,19 @@
 DROP SCHEMA PUBLIC CASCADE;
 
-CREATE TABLE demo (
-	id IDENTITY PRIMARY KEY,
-    data VARCHAR(100)
+CREATE TABLE conferences (
+    id IDENTITY PRIMARY KEY,
+    creatorID INTEGER,
+    categoryID INTEGER,
+    startDate DATETIME NOT NULL,
+    endDate DATETIME NOT NULL,
+    title VARCHAR(150),
+    description VARCHAR(500)
 );
 
-CREATE TABLE conference (
-    id IDENTITY PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    startDate DATETIME NOT NULL,
-    endDate DATETIME NOT NULL
+CREATE TABLE categories (
+   id IDENTITY PRIMARY KEY,
+   maincategory VARCHAR(12),
+   subcategory VARCHAR(48)
 );
 
 CREATE TABLE countries (
@@ -35,5 +39,5 @@ CREATE TABLE users (
    role VARCHAR(23)
 );
 
-CREATE INDEX startDate ON conference (startDate);
-CREATE INDEX endDate ON conference (endDate);
+CREATE INDEX startDate ON conferences (startDate);
+CREATE INDEX endDate ON conferences (endDate);

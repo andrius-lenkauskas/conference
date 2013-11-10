@@ -4,18 +4,19 @@
         <title>Conference</title>
         #parse("blocks/head.vm")
     </head>
-    <body onload="getCitiesList('#springUrl('')')">
+    <body onload="load('#springUrl('')')">
     	 #if ($isLogged)
     	<div class="header"><a href="#springUrl('/logout.html')">Logout</a>
+    		#parse("blocks/selectItemsPerPage.vm")
         </div>
     	 #else
-        <div class="header">Hi! <a href="#loginModal">Sign in</a>
-            or <a href="#registerModal">register</a>
+        <div class="header">Hi! <a href="#loginModal">Sign in</a> or <a href="#registerModal">register</a>
+            #parse("blocks/selectItemsPerPage.vm")
         </div>
         #end
         <div id="wrapper">
             <div class="menu">
-                <a href="#springUrl('')">Main</a>
+                <a href="#springUrl('/')">Main</a>
                 #if ($isLogged)
                 	<a href="#springUrl('/participation.html')">Participation</a>
             	#end
@@ -33,11 +34,27 @@
                 <div class="formGroup">
                 	<label for="categories">Categories</label>
                     <select id="categories">
-                    	<option value="notSelected">Not selected</option>
+                    	<option value="">Not selected</option>
+                    	#foreach($key in $categoriesList.keySet())
+                    		#set($list = $categoriesList.get($key))
+                    		<optgroup label="$key">
+                    			#foreach($cat in $list)
+                    				<option value="$cat.id">$cat.subcategory</option>
+                    			#end
+                    		</optgroup>
+                    	#end
                     </select>
                 </div>
         		</form>
-        		<table>
+        		<table id="conferenceList">
+        			<colgroup>
+       					<col span="1" style="width: 25%;">
+       					<col span="1" style="width: 5%;">
+       					<col span="1" style="width: 20%;">
+       					<col span="1" style="width: 10%;">
+       					<col span="1" style="width: 10%;">
+       					<col span="1" style="width: 30%;">
+    				</colgroup>
 					<tr>
 					<th>Conference title</th>
 					<th>Participant</th>
@@ -45,14 +62,6 @@
 					<th>Start Date</th>
 					<th>End Date</th>
 					<th>Description</th>
-					</tr>
-					<tr>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
 					</tr>
 				</table>
             </div>
@@ -75,7 +84,7 @@
                 		<span id="loginWarning" class="error"></span>
                 	</p>
                 	<div class="centerElem">
-                	<input id="submitLogin" type="submit" value="Login" onclick="clickLoginSubmit('#springUrl('')');return false;">
+                	<input id="submitLogin" type="submit" value="Login" onclick="clickLoginSubmit();return false;">
                 	</div>
             	</fieldset>
         	</form>
@@ -110,7 +119,7 @@
                 </p>
                 <p>
                     <label>Country:</label>
-                    <select name="country" onchange="getCitiesList('#springUrl('')')">
+                    <select name="country" onchange="getCitiesList()">
                     #foreach($country in $countriesList)
                     	<option value="$country.countrycode">$country.countryname</option>
                     #end
@@ -133,7 +142,7 @@
                 	<span id="registerWarning" class="error"></span>
                 </p>
                 <div class="centerElem">
-                <input id="submitRegister" type="submit" value="Register" onclick="clickRegisterSubmit('#springUrl('')');return false;">
+                <input id="submitRegister" type="submit" value="Register" onclick="clickRegisterSubmit();return false;">
                 </div>
             	</fieldset>
         	</form>
