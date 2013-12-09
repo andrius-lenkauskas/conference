@@ -2,29 +2,26 @@ package lt.nfq.conference.domain;
 
 public class Country {
 
-	private int id;
-    private String countrycode;
-    private String countryname;
+	private int countryId;
+    private String countryName;
     
     public Country(){
     	
     }
-	public int getId() {
-		return id;
+
+	public int getCountryId() {
+		return countryId;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public void setCountryId(int countryId) {
+		this.countryId = countryId;
 	}
-	public String getCountrycode() {
-		return countrycode;
+
+	public String getCountryName() {
+		return countryName;
 	}
-	public void setCountrycode(String countrycode) {
-		this.countrycode = countrycode;
-	}
-	public String getCountryname() {
-		return countryname;
-	}
-	public void setCountryname(String countryname) {
-		this.countryname = countryname;
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
 	}
 }

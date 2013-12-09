@@ -1,4 +1,4 @@
-package lt.nfq.conference.domain;
+package lt.nfq.conference.domain.webform;
 
 import javax.validation.constraints.Size;
 
@@ -17,11 +17,9 @@ public class UserRegForm {
 	@Size(min = 1, max = 255)
 	private String email;
 
-	@Size(min = 1, max = 100)
-	private String country;
+	private int country;
 
-	@Size(min = 1, max = 100)
-	private String town;
+	private int town;
 
 	@NotEmpty
 	private String password;
@@ -53,19 +51,19 @@ public class UserRegForm {
 		this.email = email;
 	}
 
-	public String getCountry() {
+	public int getCountry() {
 		return country;
 	}
 
-	public void setCountry(String country) {
+	public void setCountry(int country) {
 		this.country = country;
 	}
 
-	public String getTown() {
+	public int getTown() {
 		return town;
 	}
 
-	public void setTown(String town) {
+	public void setTown(int town) {
 		this.town = town;
 	}
 

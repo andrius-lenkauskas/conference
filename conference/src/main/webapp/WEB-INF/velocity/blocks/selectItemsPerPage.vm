@@ -1,8 +1,15 @@
 <div id="itemsCountSelection">
     Items count:
-    <select id="itemsCount">
-        <option value="20">20</option>
-        <option value="50">50</option>
-        <option value="All">All</option>
+    <select id="itemsCount" onchange="changeItemsCount(this)">
+        #if ($itemsCountSelection == 25)
+    		<option value="25" selected>25</option>
+    	#else
+        	<option value="25">25</option>
+        #end
+        #if ($itemsCountSelection == 50)
+    		<option value="50" selected>50</option>
+    	#else
+        	<option value="50">50</option>
+        #end
     </select>
 </div>

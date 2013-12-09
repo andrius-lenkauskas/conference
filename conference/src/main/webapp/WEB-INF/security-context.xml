@@ -10,13 +10,21 @@
 	<security:http auto-config="false" use-expressions="true"
 		access-denied-page="/denied.html" entry-point-ref="authenticationEntryPoint">
 
-		<security:intercept-url pattern="/resources/css/*" access="permitAll"/>
-		<security:intercept-url pattern="/resources/js/*" access="permitAll"/>
+		<security:intercept-url pattern="/resources/css/**" access="permitAll"/>
+		<security:intercept-url pattern="/resources/js/**" access="permitAll"/>
 		<security:intercept-url pattern="/resources/images/**" access="permitAll"/>
-		<security:intercept-url pattern="/login.html" access="permitAll"/>
+		<security:intercept-url pattern="/resources/fonts/**" access="permitAll"/>
 		<security:intercept-url pattern="/index.html" access="permitAll"/>
-		<security:intercept-url pattern="/bybis.html" access="permitAll"/>
-		<security:intercept-url pattern="/.*" access="permitAll" />
+		<security:intercept-url pattern="/" access="permitAll"/>
+		<security:intercept-url pattern="/participation.html" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/api/login" access="permitAll"/>
+		<security:intercept-url pattern="/api/register" access="permitAll"/>
+		<security:intercept-url pattern="/api/citieslist" access="permitAll"/>
+		<security:intercept-url pattern="/api/attendconference" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/api/addConference" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/api/getConferenceById" access="permitAll"/>
+		<security:intercept-url pattern="/api/editConference" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/**" access="denyAll" />
 		<security:logout invalidate-session="true"
 			logout-success-url="/index.html" logout-url="/logout.html" />
 
@@ -38,7 +46,7 @@
 
 	<bean id="customAuthenticationFailureHandler"
 		class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler"
-		p:defaultFailureUrl="/login.html?error=true" />
+		p:defaultFailureUrl="/index.html#loginModal" />
 
 	<bean id="customAuthenticationSuccessHandler"
 		class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler"
@@ -49,7 +57,7 @@
 		response requiring authentication -->
 	<bean id="authenticationEntryPoint"
 		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint"
-		p:loginFormUrl="/login.html" />
+		p:loginFormUrl="/index.html#loginModal" />
 
 	<security:authentication-manager alias="authenticationManager">
 		<security:authentication-provider
@@ -66,7 +74,7 @@
 		when a session has expired. See: http://static.springsource.org/spring-security/site/docs/3.1.x/reference/session-mgmt.html#list-authenticated-principals -->
 	<bean id="concurrencyFilter"
 		class="org.springframework.security.web.session.ConcurrentSessionFilter"
-		p:sessionRegistry-ref="sessionRegistry" p:expiredUrl="/login.html" />
+		p:sessionRegistry-ref="sessionRegistry" p:expiredUrl="/index.html" />
 
 	<!-- Defines a concrete concurrent control strategy Checks whether the user 
 		in question should be allowed to proceed, by comparing the number of sessions 
@@ -80,6 +88,5 @@
 	</bean>
 
 	<!-- Maintains a registry of SessionInformation instances See: http://static.springsource.org/spring-security/site/docs/3.0.x/apidocs/org/springframework/security/core/session/SessionRegistry.html -->
-	<bean id="sessionRegistry"
-		class="org.springframework.security.core.session.SessionRegistryImpl" />
+	<bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
 </beans>

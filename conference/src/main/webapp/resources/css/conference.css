@@ -1,7 +1,21 @@
+.ui-widget-header {
+	background: #ACD8F0;
+	border: 1px solid #ACD8F0;
+}
+
 body {
 	padding-top: 10px;
 	padding-right: 50px;
 	padding-left: 50px;
+}
+
+input,select {
+	border-radius: 5px;
+	border: 1px solid #ACD8F0;
+}
+
+input[type="submit"] {
+	background: #ACD8F0;
 }
 
 .header {
@@ -27,11 +41,6 @@ a:hover {
 
 #wrapper {
 	margin-top: 20px;
-	/*margin-right: 50px;
-	margin-left: 50px;
-	padding-bottom: 25px;
-	padding-left: 10px;
-	font-size: 14px;*/
 	padding-left: 15px;
 	padding-right: 15px;
 	background: #EBF4FB;
@@ -55,15 +64,21 @@ a:hover {
 
 .content table {
 	clear: both;
-	border: 1px solid black;
+	border: 1px solid #ACD8F0;
 	border-collapse: collapse;
 	width: 100%;
+	table-layout: fixed;
+}
+
+.content td {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .content td,th {
-	border: thin dotted gray;
-	padding: 5px;
-	height: 15px;
+	border: thin dotted #ACD8F0;
+	padding: 2px;
 }
 
 .formGroup {
@@ -72,7 +87,7 @@ a:hover {
 	margin-bottom: 50px;
 }
 
-.formGroup input,select {
+.formGroup input,.formGroup select {
 	display: block;
 }
 
@@ -104,9 +119,6 @@ a:hover {
 	padding: 5px 20px 13px 20px;
 	border-radius: 10px;
 	background: #fff;
-	/*background: -moz-linear-gradient(#fff, #999);
-	background: -webkit-linear-gradient(#fff, #999);
-	background: -o-linear-gradient(#fff, #999);*/
 }
 
 .modalDialog label {
@@ -121,7 +133,7 @@ a:hover {
 	-o-text-overflow: ellipsis;
 }
 
-.modalDialog input[type="text"], input[type="password"], select {
+.modalDialog input[type="text"],input[type="password"],select {
 	width: 150px;
 }
 
@@ -171,6 +183,10 @@ a:hover {
 	width: 250px;
 }
 
+.clearmargin {
+	margin: 0;
+}
+
 .centerElem {
 	width: auto !important; /* original */
 	float: none !important;
@@ -210,9 +226,6 @@ a:hover {
 	padding: 5px 20px 13px 20px;
 	border-radius: 10px;
 	background: #fff;
-	/*background: -moz-linear-gradient(#fff, #999);
-	background: -webkit-linear-gradient(#fff, #999);
-	background: -o-linear-gradient(#fff, #999);*/
 }
 
 .formGroupAddConference {
@@ -221,7 +234,7 @@ a:hover {
 	margin-bottom: 10px;
 }
 
-.formGroupAddConference input,select {
+.formGroupAddConference input,.formGroupAddConference select {
 	display: block;
 }
 

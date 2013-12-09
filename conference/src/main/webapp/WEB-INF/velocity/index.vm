@@ -4,7 +4,7 @@
         <title>Conference</title>
         #parse("blocks/head.vm")
     </head>
-    <body onload="load('#springUrl('')')">
+    <body>
     	 #if ($isLogged)
     	<div class="header"><a href="#springUrl('/logout.html')">Logout</a>
     		#parse("blocks/selectItemsPerPage.vm")
@@ -25,21 +25,25 @@
             	<form method="post" action="" id="filters">
                 <div class="formGroup">
                     <label for="filterStart">Start Date</label>
-                    <input type="text" name="start" id="filterStart" class="datePicker">
+                    <input type="text" name="start" id="filterStart" class="datePicker" onchange="filterChange()" value="$startDate">
                 </div>
                 <div class="formGroup">
                     <label for="filterEnd">End Date</label>
-                    <input type="text" name="end" id="filterEnd" class="datePicker">
+                    <input type="text" name="end" id="filterEnd" class="datePicker" onchange="filterChange()" value="$endDate">
                 </div>
                 <div class="formGroup">
                 	<label for="categories">Categories</label>
-                    <select id="categories">
+                    <select id="categories" onchange="filterChange()">
                     	<option value="">Not selected</option>
                     	#foreach($key in $categoriesList.keySet())
                     		#set($list = $categoriesList.get($key))
                     		<optgroup label="$key">
                     			#foreach($cat in $list)
-                    				<option value="$cat.id">$cat.subcategory</option>
+                    				#if ($cat.subCategoryId == $categoryId)
+    									<option value="$cat.subCategoryId" selected>$cat.subCategoryName</option>
+    								#else
+        								<option value="$cat.subCategoryId">$cat.subCategoryName</option>
+        							#end
                     			#end
                     		</optgroup>
                     	#end
@@ -48,22 +52,68 @@
         		</form>
         		<table id="conferenceList">
         			<colgroup>
-       					<col span="1" style="width: 25%;">
-       					<col span="1" style="width: 5%;">
-       					<col span="1" style="width: 20%;">
+       					<col span="1" style="width: 24%;">
+       					#if ($isLogged)
+                			<col span="1" style="width: 5%;">
+                		#end
+       					<col span="1" style="width: 15%;">
        					<col span="1" style="width: 10%;">
-       					<col span="1" style="width: 10%;">
-       					<col span="1" style="width: 30%;">
+       					<col span="1" style="width: 8%;">
+       					<col span="1" style="width: 8%;">
+       					<col span="1" style="width: 26%;">
+       					<col span="1" style="width: 4%;">
     				</colgroup>
 					<tr>
 					<th>Conference title</th>
-					<th>Participant</th>
+					#if ($isLogged)
+                		<th>Participant</th>
+                	#end
 					<th>Speaker</th>
+					<th>Category</th>
 					<th>Start Date</th>
 					<th>End Date</th>
 					<th>Description</th>
+					<th></th>
 					</tr>
+					#foreach($conference in $conferencesList)
+						<tr>
+							<td>$esc.html($conference.title)</td>
+							#if ($isLogged)
+                				#if ($conference.isParticipant())
+                					<td align="center">
+                						<img src="#springUrl('/resources/images/v.png')">
+                					</td>
+                				#elseif ($conference.isOwner())
+                					<td></td>
+                				#else
+                					<td align="center">
+                						<a onclick="attendConference($conference.conferenceId, this)" href="javascript:void(0)">
+                							<img src="#springUrl('/resources/images/x.png')">
+                						</a>
+                					</td>
+                				#end
+                			#end
+							<td>$esc.html($conference.creatorName)</td>
+							<td>$esc.html($conference.categoryName)</td>
+							<td>$esc.html($conference.startDate)</td>
+							<td>$esc.html($conference.endDate)</td>
+							<td>$esc.html($conference.description)</td>
+							<td><a onclick="showSummary($conference.conferenceId)" href="javascript:void(0)">Details</a></td>
+                    	</tr>
+                    #end
 				</table>
+				<nav class="centerElem">
+					#if ($hasPriorPage != "")
+                		<a href="#springUrl($hasPriorPage)">&lt;&lt;Prior</a>
+                	#else
+                		<span>&lt;&lt;Prior</span>
+            		#end
+            		#if ($hasNextPage != "")
+                		<a href="#springUrl($hasNextPage)">Next&gt;&gt;</a>
+                	#else
+                		<span>Next&gt;&gt;</span>
+            		#end
+				</nav>
             </div>
         </div>
         <div id="loginModal" class="modalDialog">
@@ -121,7 +171,7 @@
                     <label>Country:</label>
                     <select name="country" onchange="getCitiesList()">
                     #foreach($country in $countriesList)
-                    	<option value="$country.countrycode">$country.countryname</option>
+                    	<option value="$country.countryId">$country.countryName</option>
                     #end
                     </select>
                 </p>
@@ -148,5 +198,12 @@
         	</form>
 			</div>
 		</div>
+		#parse("blocks/conferenceSummary.vm")
+		<script>
+			window.contextPath = "#springUrl('')";
+			getCitiesList();
+			bindDatePickerEvents($('#filters'));
+			fillRows('conferenceList');
+		</script>
     </body>
 </html>

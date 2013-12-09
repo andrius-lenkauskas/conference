@@ -1,35 +1,51 @@
 package lt.nfq.conference.domain;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Conference {
-	private int id;
-	private int creatorID;
-	private int categoryID;
+	private int conferenceId;
+	private int creatorId;
+	private int categoryId;
 	private Date startDate;
 	private Date endDate;
+	private String location;
 	private String title;
 	private String description;
 
-	public int getId() {
-		return id;
+	public Conference() {
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	@Override
+	public boolean equals(Object obj) {
+		return this.conferenceId == ((Conference) obj).conferenceId;
+	}
+
+	public int getConferenceId() {
+		return conferenceId;
+	}
+
+	public void setConferenceId(int conferenceId) {
+		this.conferenceId = conferenceId;
+	}
+
+	public int getCreatorId() {
+		return creatorId;
+	}
+
+	public void setCreatorId(int creatorId) {
+		this.creatorId = creatorId;
+	}
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public Date getStartDate() {
 		return startDate;
-	}
-	
-	public String getStartDateFormated() {
-		return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(startDate);
-	}
-	
-	public String getStartDate(SimpleDateFormat simpleDateFormat) {
-		return simpleDateFormat.format(startDate);
 	}
 
 	public void setStartDate(Date startDate) {
@@ -39,33 +55,9 @@ public class Conference {
 	public Date getEndDate() {
 		return endDate;
 	}
-	
-	public String getEndDateFormated() {
-		return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(endDate);
-	}
-
-	public String getEndDate(SimpleDateFormat simpleDateFormat) {
-		return simpleDateFormat.format(endDate);
-	}
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
-	}
-
-	public int getCreatorID() {
-		return creatorID;
-	}
-
-	public void setCreatorID(int creatorID) {
-		this.creatorID = creatorID;
-	}
-
-	public int getCategoryID() {
-		return categoryID;
-	}
-
-	public void setCategoryID(int categoryID) {
-		this.categoryID = categoryID;
 	}
 
 	public String getTitle() {
@@ -84,4 +76,11 @@ public class Conference {
 		this.description = description;
 	}
 
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
 }

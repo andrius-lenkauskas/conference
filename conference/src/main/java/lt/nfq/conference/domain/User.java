@@ -1,80 +1,80 @@
 package lt.nfq.conference.domain;
 
 public class User {
-	private int id;
-	private String name;
-	private String surname;
-	private String email;
-	private String country;
-	private String town;
-	private String password;
-	private String role;
+	private int userId;
+	private String userName;
+	private String userSurname;
+	private String userEmail;
+	private int countryId;
+	private int cityId;
+	private String userPassword;
+	private String userRole;
 
 	public User() {
 
 	}
 
-	public int getId() {
-		return id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getUserSurname() {
+		return userSurname;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserSurname(String userSurname) {
+		this.userSurname = userSurname;
 	}
 
-	public String getRole() {
-		return role;
+	public String getUserEmail() {
+		return userEmail;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 
-	public String getSurname() {
-		return surname;
+	public int getCountryId() {
+		return countryId;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setCountryId(int countryId) {
+		this.countryId = countryId;
 	}
 
-	public String getEmail() {
-		return email;
+	public int getCityId() {
+		return cityId;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCityId(int cityId) {
+		this.cityId = cityId;
 	}
 
-	public String getCountry() {
-		return country;
+	public String getUserPassword() {
+		return userPassword;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 
-	public String getTown() {
-		return town;
+	public String getUserRole() {
+		return userRole;
 	}
 
-	public void setTown(String town) {
-		this.town = town;
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
 	}
 }

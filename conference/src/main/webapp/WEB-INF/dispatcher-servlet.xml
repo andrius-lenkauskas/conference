@@ -3,17 +3,22 @@
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:mvc="http://www.springframework.org/schema/mvc"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:security="http://www.springframework.org/schema/security"
     xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/security 
+		http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-    <context:annotation-config/>
+    <security:global-method-security secured-annotations="enabled"/>
+    
+    <context:annotation-config/> 
     <mvc:resources mapping="/resources/**" location="/resources/" />
-    <mvc:resources mapping="/html/**" location="/html/" />
+    
     <context:component-scan base-package="lt.nfq.conference.controller" />
 
     <mvc:annotation-driven />
@@ -25,7 +30,7 @@
         <property name="useCacheControlHeader" value="true"/>
         <property name="useCacheControlNoStore" value="true"/>
     </bean>
-</mvc:interceptors>
+	</mvc:interceptors>
 
     <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="resourceLoaderPath" value="WEB-INF/velocity/" />
@@ -37,6 +42,11 @@
         <property name="suffix" value=".vm" />
         <property name="exposeSpringMacroHelpers" value="true" />
         <property name="contentType" value="text/html; charset=UTF-8" />
+        <property name="attributesMap">
+        <map>
+            <!--Velocity Escape Tool-->
+            <entry key="esc"><bean class="org.apache.velocity.tools.generic.EscapeTool"/></entry>
+        </map>
+    </property>
     </bean>
-    
 </beans>

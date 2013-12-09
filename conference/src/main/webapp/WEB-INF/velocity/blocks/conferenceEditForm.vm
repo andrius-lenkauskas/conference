@@ -1,0 +1,58 @@
+		<div id="editConferenceModal" class="modalDialogAddConference">
+			<div>
+			<a onclick="resetModalWindow(this,'editConferenceWarning')" href="javascript:void(0)" title="Close" class="closeModal">X</a>
+			<form id="editConferenceForm">
+				<input type="hidden" id="conferenceIdEdit" name="conferenceId" value="">
+                <div class="formGroupAddConference">
+                	<p>
+                    	<label>Conference title</label>
+                    	<input type="text" id="titleEdit" name="title" class="maxWidth">
+                    	<span id="titleEditError" class="fielderror clearmargin"></span>
+                	</p>
+                </div>
+                <div class="formGroupAddConference clear">
+                    	<label for="filterStart">Start Date</label>
+                    	<input type="text" id="startDateEdit" name="startDate" class="datePicker">
+                    	<span id="startDateEditError" class="fielderror clearmargin"></span>
+                </div>
+                <div class="formGroupAddConference">
+                    	<label for="filterEnd">End Date</label>
+                    	<input type="text" id="endDateEdit" name="endDate" class="datePicker">
+                    	<span id="endDateEditError" class="fielderror clearmargin"></span>
+                </div>
+                <div class="formGroupAddConference">
+                	<label for="categories">Categories</label>
+                    <select id="categoryIdEdit" name="categoryId" onchange="filterChange()">
+                    	#foreach($key in $categoriesList.keySet())
+                    		#set($list = $categoriesList.get($key))
+                    		<optgroup label="$key">
+                    			#foreach($cat in $list)
+                    				#if ($cat.subCategoryId == $categoryId)
+    									<option value="$cat.subCategoryId" selected>$cat.subCategoryName</option>
+    								#else
+        								<option value="$cat.subCategoryId">$cat.subCategoryName</option>
+        							#end
+                    			#end
+                    		</optgroup>
+                    	#end
+                    </select>
+                </div>
+                <div class="formGroupAddConference clear">
+                	<p>
+                    <label>Location</label>
+                    <input type="text" id="locationEdit" name="location" class="maxWidth">
+                    <span id="locationEditError" class="fielderror clearmargin"></span>
+                    </p>
+                </div>
+                <div class="formGroupAddConference clear">
+                    <label>Description</label>
+                    <textarea id="descriptionEdit" name="description" class="maxWidth"></textarea> 
+                    <span id="descriptionEditError" class="fielderror clearmargin"></span>
+                </div>
+                <p id="editConferenceWarning" class="error"></p>
+                <div class="clear">
+                <input id="editConferenceSubmit" type="submit" value="Edit conference" onclick="editConference();return false;">
+                </div>
+        	</form>
+			</div>
+		</div>

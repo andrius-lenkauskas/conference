@@ -1,14 +1,15 @@
-package lt.nfq.conference.domain;
+package lt.nfq.conference.domain.webform;
 
 import java.util.List;
 
 import org.springframework.validation.ObjectError;
 
-public class UserRegFormResponse {
+public class ResponseForm {
 	private String status;
+	private String message;
 	private List<ObjectError> result;
 
-	public UserRegFormResponse() {
+	public ResponseForm() {
 	}
 
 	public String getStatus() {
@@ -25,6 +26,14 @@ public class UserRegFormResponse {
 
 	public void setResult(List<ObjectError> result) {
 		this.result = result;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

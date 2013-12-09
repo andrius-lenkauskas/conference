@@ -1,0 +1,34 @@
+<div id="conferenceSummary" class="modalDialog">
+        	<div>
+			<a onclick="resetModalWindow(this, 'conferenceSummaryWarning')" href="javascript:void(0)" title="Close" class="closeModal">X</a>
+                	<p>
+                    <label>Conference title:</label>
+                    <p id="titleSummary" class="displayInLIne"></p>
+                    </p>
+                    <p>
+                    <label>Speaker:</label>
+                    <p id="creatorNameSummary" class="displayInLIne"></p>
+                    </p>
+                    <p>
+                    <label>Start date:</label>
+                    <p id="startDateSummary" class="displayInLIne"></p>
+                    </p>
+                    <p>
+                    <label>End date:</label>
+                    <p id="endDateSummary" class="displayInLIne"></p>
+                    </p>
+                    <p>
+                    <label>Category:</label>
+                    <p id="categoryNameSummary" class="displayInLIne"></p>
+                    </p>
+                    <p>
+                    <label>Location:</label>
+                    <p id="locationSummary" class="displayInLIne"></p>
+                    </p>
+                    <p>
+                    <label>Description:</label>
+                    <textarea id="descriptionSummary" wrap="hard" readonly></textarea>
+                    </p>
+                	<p id="conferenceSummaryWarning" class="error"></p>
+            </div>
+</div>

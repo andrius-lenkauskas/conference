@@ -10,13 +10,13 @@ import org.springframework.security.core.userdetails.UserDetails;
  * Used by spring security framework
  */
 public class CustomUser implements UserDetails {
-	private long id;
+	private int id;
 	private String password;
 	private String username;
 	private List<UserGrantedAuthority> authorities;
 
 	public CustomUser(int id, String username, String password, List<UserGrantedAuthority> authorities) {
-		this.id = id;
+		this.setId(id);
 		this.password = password;
 		this.username = username;
 		this.authorities = authorities;
@@ -48,5 +48,13 @@ public class CustomUser implements UserDetails {
 
 	public boolean isEnabled() {
 		return true;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

@@ -2,35 +2,34 @@ package lt.nfq.conference.domain;
 
 public class City {
 	
-	private int id;
-    private String countrycode;
-    private String cityname;
+	private int cityId;
+    private int countryId;
+    private String cityName;
 
 	public City() {
 	}
 
-	public int getId() {
-		return id;
+	public int getCityId() {
+		return cityId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setCityId(int cityId) {
+		this.cityId = cityId;
 	}
 
-	public String getCountrycode() {
-		return countrycode;
+	public int getCountryId() {
+		return countryId;
 	}
 
-	public void setCountrycode(String countrycode) {
-		this.countrycode = countrycode;
+	public void setCountryId(int countryId) {
+		this.countryId = countryId;
 	}
 
-	public String getCityname() {
-		return cityname;
+	public String getCityName() {
+		return cityName;
 	}
 
-	public void setCityname(String cityname) {
-		this.cityname = cityname;
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
-
 }

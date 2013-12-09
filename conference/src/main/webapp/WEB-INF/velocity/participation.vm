@@ -20,45 +20,81 @@
                 	<a href="#springUrl('/participation.html')">Participation</a>
             	#end
             </div>
-            <div class="content">
+            <div class="content" id="content">
             	<form action="#addConferenceModal" method="get">
   					<input type="submit" value="Create new conference" />
 				</form>
-				<form action="#conferenSummary" method="get">
-  					<input type="submit" value="Test conference summary" />
-				</form>
             	<p>Speaker on</p>
         		<table>
+        			<colgroup>
+       					<col span="1" style="width: 30%;">
+       					<col span="1" style="width: 8%;">
+       					<col span="1" style="width: 8%;">
+       					<col span="1" style="width: 51%;">
+       					<col span="1" style="width: 3%;">
+    				</colgroup>
 					<tr>
 					<th>Conference title</th>
 					<th>Start Date</th>
 					<th>End Date</th>
 					<th>Description</th>
+					<th></th>
 					</tr>
-					<tr>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>Edit</td>
-					</tr>
+					#if ($speakerOnList.size() > 0)
+						 #foreach($speakerOn in $speakerOnList)
+						 	<tr>
+								<td>$esc.html($speakerOn.title)</td>
+								<td>$esc.html($speakerOn.startDate)</td>
+								<td>$esc.html($speakerOn.endDate)</td>
+								<td>$esc.html($speakerOn.description)</td>
+								<td><a onclick="fillEditFormAndShow($speakerOn.conferenceId)" href="javascript:void(0)">Edit</a></td>
+							</tr>
+						 #end
+					#else
+						<tr>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+					#end
 				</table>
 				<p>Participant on</p>
         		<table>
+        			<colgroup>
+       					<col span="1" style="width: 30%;">
+       					<col span="1" style="width: 8%;">
+       					<col span="1" style="width: 8%;">
+       					<col span="1" style="width: 15%;">
+       					<col span="1" style="width: 39%;">
+    				</colgroup>
 					<tr>
 					<th>Conference title</th>
-					<th>Speaker</th>
 					<th>Start Date</th>
 					<th>End Date</th>
+					<th>Speaker</th>
 					<th>Description</th>
 					</tr>
-					<tr>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-					</tr>
+					#if ($participantOnList.size() > 0)
+						 #foreach($participantOn in $participantOnList)
+						 	<tr>
+								<td>$esc.html($participantOn.title)</td>
+								<td>$esc.html($participantOn.startDate)</td>
+								<td>$esc.html($participantOn.endDate)</td>
+								<td>$esc.html($participantOn.creatorName)</td>
+								<td>$esc.html($participantOn.description)</td>
+							</tr>
+						 #end
+					#else
+						<tr>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+					#end
 				</table>
             </div>
         </div>
@@ -67,72 +103,66 @@
 			<a onclick="resetModalWindow(this,'addConferenceWarning')" href="javascript:void(0)" title="Close" class="closeModal">X</a>
 			<form id="addConferenceForm">
                 <div class="formGroupAddConference">
-                    <label>Conference title</label>
-                    <input type="text" name="conferenceTitle" class="maxWidth">
+                	<p>
+                    	<label>Conference title</label>
+                    	<input type="text" name="title" class="maxWidth">
+                    	<span id="titleError" class="fielderror clearmargin"></span>
+                	</p>
                 </div>
                 <div class="formGroupAddConference clear">
-                    <label for="filterStart">Start Date</label>
-                    <input type="text" name="start" id="filterStart" class="datePicker">
+                    	<label for="filterStart">Start Date</label>
+                    	<input type="text" name="startDate" class="datePicker">
+                    	<span id="startDateError" class="fielderror clearmargin"></span>
                 </div>
                 <div class="formGroupAddConference">
-                    <label for="filterEnd">End Date</label>
-                    <input type="text" name="end" id="filterEnd" class="datePicker">
+                    	<label for="filterEnd">End Date</label>
+                    	<input type="text" name="endDate" class="datePicker">
+                    	<span id="endDateError" class="fielderror clearmargin"></span>
                 </div>
                 <div class="formGroupAddConference">
                 	<label for="categories">Categories</label>
-                    <select id="categories" name="categories">
-                    	<option value="notSelected">Not selected</option>
+                    <select name="categoryId" onchange="filterChange()">
+                    	#foreach($key in $categoriesList.keySet())
+                    		#set($list = $categoriesList.get($key))
+                    		<optgroup label="$key">
+                    			#foreach($cat in $list)
+                    				#if ($cat.subCategoryId == $categoryId)
+    									<option value="$cat.subCategoryId" selected>$cat.subCategoryName</option>
+    								#else
+        								<option value="$cat.subCategoryId">$cat.subCategoryName</option>
+        							#end
+                    			#end
+                    		</optgroup>
+                    	#end
                     </select>
                 </div>
-                <div class="formGroupAddConference">
+                <div class="formGroupAddConference clear">
+                	<p>
                     <label>Location</label>
                     <input type="text" name="location" class="maxWidth">
+                    <span id="locationError" class="fielderror clearmargin"></span>
+                    </p>
                 </div>
                 <div class="formGroupAddConference clear">
                     <label>Description</label>
                     <textarea name="description" class="maxWidth"></textarea> 
+                    <span id="descriptionError" class="fielderror clearmargin"></span>
                 </div>
                 <p id="addConferenceWarning" class="error"></p>
                 <div class="clear">
-                <input id="submitRegister" type="submit" value="Add new conference" onclick="clickRegisterSubmit('#springUrl('')');return false;">
+                <input id="addConferenceSubmit" type="submit" value="Add new conference" onclick="addConference();return false;">
                 </div>
         	</form>
 			</div>
 		</div>
-		<div id="conferenSummary" class="modalDialog">
-        	<div>
-			<a onclick="resetModalWindow(this, 'conferenSummaryWarning')" href="javascript:void(0)" title="Close" class="closeModal">X</a>
-                	<p>
-                    <label>Conference title:</label>
-                    <p class="displayInLIne">Lietuvos vyskupų konferencija</p>
-                    </p>
-                    <p>
-                    <label>Speaker:</label>
-                    <p class="displayInLIne">Sigitas Tamkevičius</p>
-                    </p>
-                    <p>
-                    <label>Start date:</label>
-                    <p class="displayInLIne">2013-10-22</p>
-                    </p>
-                    <p>
-                    <label>End date:</label>
-                    <p class="displayInLIne">2013-10-29</p>
-                    </p>
-                    <p>
-                    <label>Category:</label>
-                    <p class="displayInLIne">Religija</p>
-                    </p>
-                    <p>
-                    <label>Location:</label>
-                    <p class="displayInLIne">Kaunas, Vytauto bažnyčia</p>
-                    </p>
-                    <p>
-                    <label>Description:</label>
-                    <textarea wrap="hard" readonly>Letuvos katalikų, Lietuvos liuteronų ir Lietuvos tačiatikių bažnyčių Atstovų pareiškimas, dėl žmogaus gyvybės apsaugos</textarea>
-                    </p>
-                	<p id="conferenSummaryWarning" class="error"></p>
-                	</div>
-        	</div>
-		</div>
+		#parse("blocks/conferenceSummary.vm")
+		#parse("blocks/conferenceEditForm.vm")
+		<script>
+			window.contextPath = "#springUrl('')";
+			expandToWindow('content');
+			bindDatePickerEvents($('#addConferenceForm'));
+			if (location.search.substring(0,14) == '?conferenceId=')
+				showSummary(location.search.substring(14));
+		</script>
     </body>
 </html>

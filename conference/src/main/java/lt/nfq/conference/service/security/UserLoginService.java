@@ -28,12 +28,12 @@ public class UserLoginService implements UserDetailsService {
 			}
 			
 			List<UserGrantedAuthority> authorities = new ArrayList<UserGrantedAuthority>();
-	        String[] authStrings = user.getRole().split(",");
+	        String[] authStrings = user.getUserRole().split(",");
 	        for(String authString : authStrings) {
 	            authorities.add(new UserGrantedAuthority(authString));
 	        }
 	        
-			CustomUser cu = new CustomUser(user.getId(), user.getName(), user.getPassword(), authorities);
+			CustomUser cu = new CustomUser(user.getUserId(), user.getUserName(), user.getUserPassword(), authorities);
 			return cu;
 		} else {
 			return null;
