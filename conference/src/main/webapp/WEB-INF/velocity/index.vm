@@ -25,11 +25,11 @@
             	<form method="post" action="" id="filters">
                 <div class="formGroup">
                     <label for="filterStart">Start Date</label>
-                    <input type="text" name="start" id="filterStart" class="datePicker" onchange="filterChange()" value="$startDate">
+                    <input type="text" name="start" id="filterStart" class="datePicker" onchange="filterChange()" value="$startDate" pattern="^\d{4}-(0[1-9]|1[1,2])-(0[1-9]|[1,2][0-9]|3[0,1])$">
                 </div>
                 <div class="formGroup">
                     <label for="filterEnd">End Date</label>
-                    <input type="text" name="end" id="filterEnd" class="datePicker" onchange="filterChange()" value="$endDate">
+                    <input type="text" name="end" id="filterEnd" class="datePicker" onchange="filterChange()" value="$endDate" pattern="^\d{4}-(0[1-9]|1[1,2])-(0[1-9]|[1,2][0-9]|3[0,1])$">
                 </div>
                 <div class="formGroup">
                 	<label for="categories">Categories</label>

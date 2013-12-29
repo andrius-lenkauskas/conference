@@ -108,6 +108,16 @@ function bindDatePickerEvents(domSelector) {
 	});
 }
 
+function bindDateTimePickerEvents(domSelector) {
+	domSelector.find(".datePicker").datetimepicker({
+		dateFormat : "yy-mm-dd",
+		changeMonth : true,
+		changeYear : true,
+		showAnim : "show",
+		minDate : 0
+	});
+}
+
 function filterChange() {
 	var startDate = document.getElementById("filterStart").value;
 	var endDate = document.getElementById("filterEnd").value;
@@ -116,9 +126,9 @@ function filterChange() {
 	var itemsCountElem = document.getElementById("itemsCount");
 	var itemsCount = itemsCountElem.options[itemsCountElem.selectedIndex].value;
 	var newLocation = contextPath + '/index.html?page=1&count=' + itemsCount;
-	if (startDate.length != 0)
+	if (startDate.match(/^\d{4}-(0[1-9]|1[1,2])-(0[1-9]|[1,2][0-9]|3[0,1])$/))
 		newLocation = newLocation + '&startDate=' + startDate;
-	if (endDate.length != 0)
+	if (endDate.match(/^\d{4}-(0[1-9]|1[1,2])-(0[1-9]|[1,2][0-9]|3[0,1])$/))
 		newLocation = newLocation + '&endDate=' + endDate;
 	if (parseInt(categoryId) > 0)
 		newLocation = newLocation + '&categoryId=' + parseInt(categoryId);
@@ -142,6 +152,7 @@ function attendConference(conferenceId, e){
 		data : 'conferenceId=' + conferenceId,
 		type : 'get',
 		contentType : 'text/xml;charset=UTF-8',
+		async : false,
 		error : function(jqXHR, textStatus, errorThrown){
 			e.getElementsByTagName("img")[0].src = contextPath + '/resources/images/x.png';
 			e.getElementsByTagName("img")[0].parentNode.href = oldParentHref;

@@ -111,12 +111,12 @@
                 </div>
                 <div class="formGroupAddConference clear">
                     	<label for="filterStart">Start Date</label>
-                    	<input type="text" name="startDate" class="datePicker">
+                    	<input type="text" name="startDate" class="datePicker" pattern="^\d{4}-(0[1-9]|1[1,2])-(0[1-9]|[1,2][0-9]|3[0,1])\s+([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$">
                     	<span id="startDateError" class="fielderror clearmargin"></span>
                 </div>
                 <div class="formGroupAddConference">
                     	<label for="filterEnd">End Date</label>
-                    	<input type="text" name="endDate" class="datePicker">
+                    	<input type="text" name="endDate" class="datePicker" pattern="^\d{4}-(0[1-9]|1[1,2])-(0[1-9]|[1,2][0-9]|3[0,1])\s+([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$">
                     	<span id="endDateError" class="fielderror clearmargin"></span>
                 </div>
                 <div class="formGroupAddConference">
@@ -160,7 +160,8 @@
 		<script>
 			window.contextPath = "#springUrl('')";
 			expandToWindow('content');
-			bindDatePickerEvents($('#addConferenceForm'));
+			bindDateTimePickerEvents($('#addConferenceForm'));
+			bindDateTimePickerEvents($('#editConferenceModal'));
 			if (location.search.substring(0,14) == '?conferenceId=')
 				showSummary(location.search.substring(14));
 		</script>
