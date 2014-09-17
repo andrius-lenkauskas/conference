@@ -1,0 +1,1 @@
+Conferences and Participants (CaP) is a simple portal for organizing and searching for conferences of different kinds: organizers create conferences, add details like venue and accommodation. Interested users can search for conferences, register for a conference. The system has an interactive user interface via HTML pages.
